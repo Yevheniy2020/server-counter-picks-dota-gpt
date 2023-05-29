@@ -25,7 +25,7 @@ export class ChatGPT {
 
         try {
             const response = await axios.request(options);
-            return response.data
+            return response.data.message
         } catch (error) {
             console.error(error);
         }
