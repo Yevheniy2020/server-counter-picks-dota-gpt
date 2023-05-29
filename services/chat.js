@@ -6,14 +6,13 @@ export class ChatGPT {
 
         const options = {
             method: 'POST',
-            url: 'https://openai80.p.rapidapi.com/chat/completions',
+            url: 'https://chatgpt53.p.rapidapi.com/',
             headers: {
                 'content-type': 'application/json',
                 'X-RapidAPI-Key': '2e7fb0a875msh6f7dcc75f08eefap16e088jsn4243fe649b4a',
-                'X-RapidAPI-Host': 'openai80.p.rapidapi.com'
+                'X-RapidAPI-Host': 'chatgpt53.p.rapidapi.com'
             },
             data: {
-                model: 'gpt-3.5-turbo',
                 messages: [
                     {
                         role: 'user',
@@ -25,9 +24,8 @@ export class ChatGPT {
 
         try {
             const response = await axios.request(options);
-            return response.data.message
+            return response.data.choices[0].message.content
         } catch (error) {
             console.error(error);
         }
-    }
 }
