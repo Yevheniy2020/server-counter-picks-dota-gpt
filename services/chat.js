@@ -1,18 +1,22 @@
-import { Configuration, OpenAIApi } from "openai";
+import axios from "axios";
 
 export class ChatGPT {
 
-    configuration = new Configuration({
-        organization: "org-3TLOwELwqakIKpQxPGq1bMlH",
-        apiKey: "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",
-    });
-    openai = new OpenAIApi(this.configuration)
+    options = {
+        method: 'GET',
+        url: 'https://openai80.p.rapidapi.com/models',
+        headers: {
+            'X-RapidAPI-Key': '2e7fb0a875msh6f7dcc75f08eefap16e088jsn4243fe649b4a',
+            'X-RapidAPI-Host': 'openai80.p.rapidapi.com'
+        }
+    };
 
-    getAnswer = async (question) =>{
-        const completion = await this.openai.createChatCompletion({
-            model: "gpt-3.5-turbo",
-            messages: [{role: "user", content: `Now you're a Dota 2 e-player, and you have to write counterpicks for ${question}`}],
-        });
-        return completion.data.choices[0].message.content;
+    getAnswer = async (q) => {
+        try {
+            const response = await axios.request(this.options);
+            console.log(response.data);
+        } catch (error) {
+            console.error(error);
+        }
     }
 }
