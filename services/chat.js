@@ -28,4 +28,5 @@ export class ChatGPT {
         } catch (error) {
             console.error(error);
         }
+    }
 }
